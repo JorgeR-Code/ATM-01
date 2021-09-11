@@ -15,7 +15,7 @@ function Colsulta (){
 
     dinero = document.getElementById("dinero").value;
     var arrayValueMin = [];
- //----Total amount i casher------------
+ //----Total amount in casher------------
     for (var b of caja){
 
         var val = b.valor
@@ -99,7 +99,18 @@ function entregarDinero()
 }
 
 
-
+//-------------Code for keyboard-----------
+$(document).ready(function(){
+    $("#keyboard a").on('click', function() {
+        if ($(this).attr('data') == 'DEL') {
+            board_text = $('textarea.dinero').val();
+            board_text = board_text.substring(0, board_text.length-1);
+            $('textarea.dinero').val(board_text);
+        } else {
+            $('textarea.dinero').val($('textarea.dinero').val() + $(this).attr('data'));
+        }
+    });
+});
 //----------variables are created---------
 
 var caja = [];
@@ -116,7 +127,6 @@ var totalCajero = 0;
 var multiple = 10;
 
 var r = document.getElementById("resultado");
-var b = document.getElementById("extraer");
+var b = document.getElementById("aceptar");
 b.addEventListener("click", entregarDinero);
-
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cajero automatico</title>
     <link rel="stylesheet" href="main.css"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
     <div class="area" >
@@ -18,11 +18,11 @@
 
             </p></div>
             
-            <div class="divTextArea">                
-                <textarea class="textarea" disabled>Ingrese la cantidad a retirar:</textarea>
+            <div class="divTextArea" id="divTextArea">
 
-                <textarea id="dinero" class="dinero" autofocus></textarea>
-                <!-- <input type="number" id="dinero" class="dinero" autofocus/> -->
+                    <p >Ingrese la cantidad a retirar:</p>
+
+                    <textarea id="dinero" class="dinero" autofocus maxlength="5"></textarea>
 
             </div>
             <div class="keyboard" id="keyboard">
@@ -33,7 +33,7 @@
                 <a class="keyNumber" data="4">4</a>
                 <a class="keyNumber" data="5">5</a>
                 <a class="keyNumber" data="6">6</a>
-                <div class="keyNumber1" id="cancelar" >Cancelar</div><br>
+                <a class="keyNumber1" id="cancelar" data="cancel" >Salir</a><br>
                 <a class="keyNumber" data="7">7</a>
                 <a class="keyNumber" data="8">8</a>
                 <a class="keyNumber" data="9">9</a>

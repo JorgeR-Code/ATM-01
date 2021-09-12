@@ -1,3 +1,4 @@
+
 //------------Class Billete is created-----------
 
 class Billete
@@ -9,46 +10,53 @@ class Billete
     }
 }
 
-//--------This function compares the requested money with the available money--------
-/*
-function Colsulta (){
+//----------variables are created---------
 
-    dinero = document.getElementById("dinero").value;
-    var arrayValueMin = [];
- //----Total amount in casher------------
-    for (var b of caja){
+var caja = [];
+var entregado = [];
 
-        var val = b.valor
-        arrayValueMin.push(val);
+caja.push( new Billete(50, 30));
+caja.push( new Billete(20, 20));
+caja.push( new Billete(10, 50));
 
-        var bruto = b.valor * b.cantidad;
-        totalCajero = totalCajero + bruto ;
-    }
+var dinero = document.getElementById("dinero").value;
+var div = 0;
+var papeles = 0;
+var totalCajero = 0;
+var multiple = 10;
 
-//-----minimum quantity to deliver--------
-    valueMin = arrayValueMin.reduce((n,m) => Math.min(n,m), Number.POSITIVE_INFINITY)
-
-
-///-----multiple------
-var resto = dinero % multiple;
-
-//----Condition to deliver money----------
-  if(dinero <= totalCajero && dinero >= valueMin && resto == 0){
-
-    entregarDinero();
+var D = document.getElementById("divTextArea");
+var r = document.getElementById("resultado");
+var b = document.getElementById("aceptar");
+b.addEventListener("click", entregarDinero);
 
 
-  }
-  else{
+//-------------Code for keyboard-----------
+$(document).ready(function(){
+    $("#keyboard a").on('click', function() {
+        if ($(this).attr('data') == 'cancel') {
 
-   r.innerHTML =  "No te puedo entregar esa cantidad, la cantidad sollicitada debe ser multiplo de 10";
+          $("#divTextArea").load("init.html");
+          var reset = entregado.length=0
+          console.log (reset);
+        } else{
+            
+            if 
+                ($(this).attr('data') == 'DEL') {
+                    board_text = $('textarea.dinero').val();
+                    board_text = board_text.substring(0, board_text.length-1);
+                    $('textarea.dinero').val(board_text);
+    
+            } else {
+                $('textarea.dinero').val($('textarea.dinero').val() + $(this).attr('data'));
+            }
+        }
+       
+    });
+});
 
-  }
 
-}
-*/
-//---------------This function calculates the number of tickets to deliver
-
+///--------------Processing...--------------
 function entregarDinero()
 {
     dinero = document.getElementById("dinero").value;
@@ -77,56 +85,31 @@ function entregarDinero()
         }
         
     }
+
     console.log(entregado);
-    
+    console.log(caja);
     if (dinero > 0){
        
-        r.innerHTML = "Los siento, no puedo entregarte esa cantidad"
+        D.innerHTML = "<p class='message'>Su solicitud no puede ser procesada :'(</p>"
 
     }
     else{
-
+        D.innerHTML = "<p> Usted recibe:</p><br>"
         for(var e of entregado){
 
             if(e.cantidad > 0){
-                r.innerHTML += e.cantidad + " billetes de $" + e.valor + "<br />";
+                
+                D.innerHTML += e.cantidad + " billetes de $" + e.valor + "<br />";
             }
 
         }
-
+    
     }
  
 }
 
 
-//-------------Code for keyboard-----------
-$(document).ready(function(){
-    $("#keyboard a").on('click', function() {
-        if ($(this).attr('data') == 'DEL') {
-            board_text = $('textarea.dinero').val();
-            board_text = board_text.substring(0, board_text.length-1);
-            $('textarea.dinero').val(board_text);
-        } else {
-            $('textarea.dinero').val($('textarea.dinero').val() + $(this).attr('data'));
-        }
-    });
-});
-//----------variables are created---------
 
-var caja = [];
-var entregado = [];
 
-caja.push( new Billete(50, 3));
-caja.push( new Billete(20, 2));
-caja.push( new Billete(10, 2));
 
-var dinero = document.getElementById("dinero").value;
-var div = 0;
-var papeles = 0;
-var totalCajero = 0;
-var multiple = 10;
-
-var r = document.getElementById("resultado");
-var b = document.getElementById("aceptar");
-b.addEventListener("click", entregarDinero);
 

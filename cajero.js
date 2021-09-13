@@ -1,10 +1,8 @@
 
 //------------Class Billete is created-----------
 
-class Billete
-{
-    constructor(v, c)
-    {
+class Billete {
+    constructor(v, c) {
         this.valor = v;
         this.cantidad = c;
     }
@@ -14,10 +12,11 @@ class Billete
 
 var caja = [];
 var entregado = [];
+var cantidadSub;
 
-caja.push( new Billete(50, 30));
-caja.push( new Billete(20, 20));
-caja.push( new Billete(10, 50));
+caja.push(new Billete(50, 30));
+caja.push(new Billete(20, 20));
+caja.push(new Billete(10, 50));
 
 var dinero = document.getElementById("dinero").value;
 var div = 0;
@@ -32,81 +31,100 @@ b.addEventListener("click", entregarDinero);
 
 
 //-------------Code for keyboard-----------
-$(document).ready(function(){
-    $("#keyboard a").on('click', function() {
+$(document).ready(function () {
+    $("#keyboard a").on('click', function () {
         if ($(this).attr('data') == 'cancel') {
 
-          $("#divTextArea").load("init.html");
-          var reset = entregado.length=0
-          console.log (reset);
-        } else{
-            
-            if 
+            $("#divTextArea").load("init.html");
+            entregado.length = 0;
+
+        }
+        else {
+
+            if
                 ($(this).attr('data') == 'DEL') {
-                    board_text = $('textarea.dinero').val();
-                    board_text = board_text.substring(0, board_text.length-1);
-                    $('textarea.dinero').val(board_text);
-    
+                board_text = $('textarea.dinero').val();
+                board_text = board_text.substring(0, board_text.length - 1);
+                $('textarea.dinero').val(board_text);
+
             } else {
                 $('textarea.dinero').val($('textarea.dinero').val() + $(this).attr('data'));
             }
         }
-       
+
     });
 });
 
 
-///--------------Processing...--------------
-function entregarDinero()
-{
+///--------------Data processing...--------------
+function entregarDinero() {
     dinero = document.getElementById("dinero").value;
-        for (var bi of caja)
-    {
-        if(dinero > 0)
-        {
-            div = Math.floor(dinero / bi.valor);
-            if(div > bi.cantidad)
-            {
+    var caja2 = [];
 
-                papeles = bi.cantidad;
-                
+
+    if (dinero == 0){ //The input value is validated 
+
+        D.innerHTML = "<p class='message'>Intentelo de nuevo ingresando una cantidad :)</p>"
+    }
+    else {//In case the input is validated
+
+        for (var bi of caja) {
+
+            if (dinero > 0) {
+                div = Math.floor(dinero / bi.valor);
+
+                if (div > bi.cantidad) {
+
+                    papeles = bi.cantidad;
+
+                }
+
+                else {
+
+                    papeles = div;
+
+                }
+
+                entregado.push(new Billete(bi.valor, papeles));
+                dinero = dinero - (bi.valor * papeles);
+
+
+                var cantidadSub = bi.cantidad - papeles;
+                caja2.push(new Billete(bi.valor, cantidadSub)); //this push is for the new value of "caja"
+
             }
+            else {
 
-            else
-            {
+                caja2.push(new Billete(bi.valor, bi.cantidad));//this push is for the new value of "caja"
 
-                papeles = div;
-                
             }
-        
-            entregado.push(new Billete(bi.valor, papeles));
-            dinero = dinero -(bi.valor * papeles);
+        }
+
+        //validation to know if "caja" can deliver the money
+        if (dinero > 0) {
+
+            D.innerHTML = "<p class='message'>Su solicitud no puede ser procesada :'(</p>"
 
         }
-        
-    }
+        else {
+            D.innerHTML = "<p> Usted recibe:</p><br>"
+            for (var e of entregado) {
 
-    console.log(entregado);
+                if (e.cantidad > 0) {
+
+                    D.innerHTML += e.cantidad + " billetes de $" + e.valor + "<br />";
+
+                }
+
+            }
+        }
+    }
+///Now "caja" takes the new values
+    caja = caja2;
     console.log(caja);
-    if (dinero > 0){
-       
-        D.innerHTML = "<p class='message'>Su solicitud no puede ser procesada :'(</p>"
 
-    }
-    else{
-        D.innerHTML = "<p> Usted recibe:</p><br>"
-        for(var e of entregado){
-
-            if(e.cantidad > 0){
-                
-                D.innerHTML += e.cantidad + " billetes de $" + e.valor + "<br />";
-            }
-
-        }
-    
-    }
- 
 }
+
 
 
 

@@ -126,7 +126,7 @@ function entregarDinero() {
 
      if (dinero == 0 || dinero > totalCaje1){ //The input value is validated 
 
-        D.innerHTML = "<p class='message'>Intentelo de nuevo ingresando una cantidad :)</p>"
+        D.innerHTML = "<p class='message'>No te puedo entregar esa cantidad :'(</p>"
     }
     else {//In case the input is validated
 

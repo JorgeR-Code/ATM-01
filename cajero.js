@@ -1,4 +1,6 @@
-
+//------------The canvas is called-----------
+BI = document.getElementById("billetesImg");
+ctx = BI.getContext("2d");
 //------------Class Billete is created-----------
 
 class Billete {
@@ -13,21 +15,79 @@ class Billete {
 var caja = [];
 var entregado = [];
 var cantidadSub;
+var totalCaje1 = 0;
 
-caja.push(new Billete(50, 30));
-caja.push(new Billete(20, 20));
-caja.push(new Billete(10, 50));
+
+
+var billete20 = {
+    value : 20,
+    url: "20.jpg",
+    x : [],
+    y : [],
+    imagen : ""
+}
+
+var billete50 = {
+    value : 50,
+    url: "50.png",
+    x : [],
+    y : [],
+    imagen : ""
+}
+
+var billete100 = {
+    value : 100,
+    url: "100.png",
+    x : [],
+    y : [],
+    imagen : ""
+}
+
+
+billete20.imagen = new Image();
+billete20.imagen.src = billete20.url;
+
+billete50.imagen = new Image();
+billete50.imagen.src = billete50.url;
+
+billete100.imagen = new Image();
+billete100.imagen.src = billete100.url;
+
+caja.push(new Billete(100, 50));
+caja.push(new Billete(50, 50));
+caja.push(new Billete(20, 50));
 
 var dinero = document.getElementById("dinero").value;
 var div = 0;
 var papeles = 0;
-var totalCajero = 0;
-var multiple = 10;
 
+
+infoTec = document.getElementById("infoTec");
 var D = document.getElementById("divTextArea");
 var r = document.getElementById("resultado");
 var b = document.getElementById("aceptar");
 b.addEventListener("click", entregarDinero);
+
+//-----------Area of "Technical information" to show "total caja"--------
+
+function totalCaja(){
+    var totalCajero = 0;
+    infoTec.innerHTML = "<p>Información Técnica</p><br><p> El cajero cuenta con:</p><br>"
+    for(Rest of caja){
+        console.log(caja);
+        infoTec.innerHTML += Rest.cantidad + " billetes de $" + Rest.valor + "<br />";
+
+        totalCajero += (Rest.cantidad * Rest.valor);
+    }
+    totalCaje1 = totalCajero;
+    infoTec.innerHTML += "<br> Total: " + totalCaje1;
+
+}
+
+totalCaja();
+
+
+
 
 
 //-------------Code for keyboard-----------
@@ -37,6 +97,7 @@ $(document).ready(function () {
 
             $("#divTextArea").load("init.html");
             entregado.length = 0;
+            ctx.clearRect(0, 0, BI.width, BI.height);
 
         }
         else {
@@ -58,11 +119,12 @@ $(document).ready(function () {
 
 ///--------------Data processing...--------------
 function entregarDinero() {
+    
     dinero = document.getElementById("dinero").value;
     var caja2 = [];
 
 
-    if (dinero == 0){ //The input value is validated 
+     if (dinero == 0 || dinero > totalCaje1){ //The input value is validated 
 
         D.innerHTML = "<p class='message'>Intentelo de nuevo ingresando una cantidad :)</p>"
     }
@@ -108,20 +170,52 @@ function entregarDinero() {
         }
         else {
             D.innerHTML = "<p> Usted recibe:</p><br>"
+            
+
             for (var e of entregado) {
 
                 if (e.cantidad > 0) {
 
                     D.innerHTML += e.cantidad + " billetes de $" + e.valor + "<br />";
 
-                }
+                    
+                    if (e.valor == billete100.value) {
+                        for (var n = 0; n < e.cantidad; n++) {
+                            billete100.x[n] = 10 + (n * 5);
+                            billete100.y[n] = 100;
+                            ctx.drawImage(billete100.imagen, billete100.x[n], billete100.y[n]);
 
+                        }
+                    }
+
+                    if (e.valor == billete50.value) {
+                        for (var n = 0; n < e.cantidad; n++) {
+                            billete50.x[n] = 10 + (n * 5);
+                            billete50.y[n] = 300
+                            ctx.drawImage(billete50.imagen, billete50.x[n], billete50.y[n]);
+
+                        }
+                    }
+
+                    if (e.valor == billete20.value) {
+                        for (var n = 0; n < e.cantidad; n++) {
+                            billete20.x[n] = 10 + (n * 5);
+                            billete20.y[n] = 500;
+                            ctx.drawImage(billete20.imagen, billete20.x[n], billete20.y[n]);
+
+                        }
+                    }
+
+                }
+                //------
             }
+            ///Now "caja" takes the new values
+            caja = caja2;
         }
     }
-///Now "caja" takes the new values
-    caja = caja2;
-    console.log(caja);
+
+    ////To update de "Technical information"
+    totalCaja();
 
 }
 

@@ -16,7 +16,7 @@
     display: grid;
 
     grid-template-columns: 15% 7% 22% 5% 14% 37%;
-    grid-template-rows: 20% 39% 12.5% 28.5%;
+    grid-template-rows: 20% 39% 12.5% 25.5% 3%;
 }
 
 .InfTec{
@@ -60,8 +60,8 @@
     grid-row: 2/3; 
     position:relative; z-index:2;
     background: rgb(58, 234, 247);
-    width:295px;
-    height:240px;
+    width:87%;
+    height:85%;
     border: 20px solid #111111;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
@@ -72,10 +72,11 @@
 }
 
 .keyboard{
-    position:relative; z-index:4;
+    position:static; z-index:4;
     grid-column: 3/4;
     grid-row: 4/5;
-    height: 170px;
+    /* height: 90%; */
+    width: 90%;
     display: inline-block;
     border-radius: 5px;
     padding: 10px;
@@ -90,8 +91,8 @@
 }
 
 .keyNumber{
-    width: 55px;
-    height: 40px;
+    width: 19%;
+    height: 20%;
     margin: 2px;
     background: rgba(0, 0, 0, 0.15);
     color: #363b5e;
@@ -104,8 +105,8 @@
 }
 
 .keyNumber1{
-    width: 90px;
-    height: 40px;
+    width: 22%;
+    height: 20%;
     margin-left: 25px;
     background: rgba(0, 0, 0, 0.15);
     color: #363b5e;

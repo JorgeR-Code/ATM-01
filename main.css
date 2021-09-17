@@ -3,20 +3,20 @@
 *{
     margin: 0;
     padding: 0;
+    
 }
 
 .container {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
 
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
-    font-size: 20px;
-
+    font-size: 1.5vw;
     display: grid;
 
     grid-template-columns: 15% 7% 22% 5% 14% 37%;
-    grid-template-rows: 20% 39% 12.5% 25.5% 3%;
+    grid-template-rows: 9.4vw 18.3vw 5.9vw 12vw 1.4vw;
 }
 
 .InfTec{
@@ -46,9 +46,9 @@
 .dinero{
     position:relative; z-index:3;
     border: none;
-    width: 150px;
-    height: 30px;
-    margin-top: 15px;
+    width: 13vw;
+    height: 2vw;
+    margin-top: 2vw;
     text-align: center;
     font-size: larger; 
     resize: none;
@@ -60,9 +60,9 @@
     grid-row: 2/3; 
     position:relative; z-index:2;
     background: rgb(58, 234, 247);
-    width:87%;
-    height:85%;
-    border: 20px solid #111111;
+    width: 91%;
+    height:91%;
+    border: 0.8vmax solid #111111;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
     flex-direction: column;
@@ -75,14 +75,14 @@
     position:static; z-index:4;
     grid-column: 3/4;
     grid-row: 4/5;
-    /* height: 90%; */
-    width: 90%;
+    /* height: 100%;
+    width: 100%; */
     display: inline-block;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 15px;
+    border-radius: 1vw;
+    padding: 0.2vw;
+    font-size: 1.3vw;
     background: #d9deff;
-    border: 1px solid #363b5e;
+    border: 0.2vw solid #363b5e;
     user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -91,9 +91,9 @@
 }
 
 .keyNumber{
-    width: 19%;
-    height: 20%;
-    margin: 2px;
+    width: 4vw;
+    height: 2.5vw;
+    margin: 0.1vw;
     background: rgba(0, 0, 0, 0.15);
     color: #363b5e;
     border-radius: 15%;
@@ -105,9 +105,9 @@
 }
 
 .keyNumber1{
-    width: 22%;
-    height: 20%;
-    margin-left: 25px;
+    width: 6vw;
+    height: 2.5vw;
+    margin-left: 1vw;
     background: rgba(0, 0, 0, 0.15);
     color: #363b5e;
     border-radius: 10%;
@@ -122,6 +122,11 @@
     position:relative; z-index:3;
     grid-column: 6/7;
     grid-row: 1/5;
+}
+
+.canvas1{
+    width: 100%;
+    height: 100%;
 }
 
 .keyNumber:active{
@@ -170,8 +175,8 @@
 .area{
     background: #4e54c8;  
     background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
-    width: 100%;
-    height:100vh;
+    width: 100vw;
+    height:100vw;
     
    
 }

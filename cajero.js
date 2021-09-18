@@ -74,7 +74,6 @@ function totalCaja(){
     var totalCajero = 0;
     infoTec.innerHTML = "<p>Información Técnica</p><br><p> El cajero cuenta con:</p><br>"
     for(Rest of caja){
-        console.log(caja);
         infoTec.innerHTML += Rest.cantidad + " billetes de $" + Rest.valor + "<br />";
 
         totalCajero += (Rest.cantidad * Rest.valor);
